@@ -24,6 +24,9 @@
 
 %% The priv_dir environment setting is mandatory.
 start(_, _) ->
+	farwest_sup:start_link().
+
+start_phase(listen, _, _) ->
 	PrivDir = case application:get_env(farwest, priv_dir) of
 		{ok, PD} -> PD
 	end,
@@ -34,7 +37,7 @@ start(_, _) ->
 		cowboy_http_protocol, [{dispatch, Dispatch}]
 	),
 	lager:info("Farwest listening on port ~p~n", [Port]),
-	farwest_sup:start_link().
+	ok.
 
 stop(_) ->
 	ok.

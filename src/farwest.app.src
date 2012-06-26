@@ -29,5 +29,8 @@
 	{mod, {farwest_app, []}},
 	{env, [
 		{port, 8080}
+	]},
+	{start_phases, [
+		{listen, []}
 	]}
 ]}.
