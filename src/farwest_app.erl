@@ -28,10 +28,7 @@ start(_, _) ->
 		{ok, PD} -> PD
 	end,
 	{ok, Dispatch} = file:consult(PrivDir ++ "/dispatch.conf"),
-	Port = case application:get_env(farwest, port) of
-		{ok, P} -> P;
-		undefined -> 8080
-	end,
+	{ok, Port} = application:get_env(farwest, port),
 	{ok, _} = cowboy:start_listener(farwest, 100,
 		cowboy_tcp_transport, [{port, Port}],
 		cowboy_http_protocol, [{dispatch, Dispatch}]

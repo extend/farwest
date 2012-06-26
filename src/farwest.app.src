@@ -22,5 +22,7 @@
 		stdlib
 	]},
 	{mod, {farwest_app, []}},
-	{env, []}
+	{env, [
+		{port, 8080}
+	]}
 ]}.
