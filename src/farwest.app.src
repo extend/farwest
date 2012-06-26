@@ -19,7 +19,12 @@
 	{registered, [farwest_sup]},
 	{applications, [
 		kernel,
-		stdlib
+		stdlib,
+		lager,
+		gproc,
+		jsx,
+		erlydtl,
+		cowboy
 	]},
 	{mod, {farwest_app, []}},
 	{env, [
