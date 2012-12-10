@@ -1,0 +1,35 @@
+{% extends "farwest_base.dtl" %}
+
+{% block title %}Farwest: User data collection{% endblock %}
+
+{% block content %}
+	<ul>{% for name in buckets %}
+		<li>
+			{{ name }}
+			<form class="fw_userdata_jump" action="{{ name }}" method="get">
+				<label>Jump to key: <input type="text" name="key"/> <input type="submit" class="btn"/></label>
+			</form>
+		</li>
+	{% endfor %}</ul>
+
+	<form id="fw_userdata_form" action="?new=1" method="put" class="well">
+		<label>Bucket</label>
+		<input type="text" name="bucket" class="span3"/>
+		<span class="help-block">Only lowercase characters, numbers and underscore allowed</span>
+		<span class="help-block">Must begin with "fw_userdata_"</span>
+		<label>Key</label>
+		<input type="text" name="key" class="span3"/>
+		<span class="help-block">Only lowercase characters, numbers and underscore allowed</span>
+		<label>User data</label>
+		<textarea name="userdata" class="span5"></textarea>
+		<label>Comments</label>
+		<input type="text" name="comments" class="span5"/>
+		<fieldset>
+			<input type="submit" class="btn"/>
+		</fieldset>
+	</form>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/static/farwest/fw_userdata.js"></script>
+{% endblock %}

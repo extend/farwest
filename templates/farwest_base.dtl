@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}Farwest{% endblock %}</title>
+	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<header>
+	</header>
+
+	<div id="contents">{% block content %}{% endblock %}</div>
+
+	<footer>
+	</footer>
+
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/jquery/jquery.min.js"></script>
+	<script src="/static/jquery/jquery.form.js"></script>
+	<script src="/static/jquery/jquery.json.js"></script>
+	{% block javascript %}{% endblock %}
+</body>
+</html>

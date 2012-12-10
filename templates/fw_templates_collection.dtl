@@ -1,0 +1,30 @@
+{% extends "farwest_base.dtl" %}
+
+{% block title %}Farwest: Templates list{% endblock %}
+
+{% block content %}
+	<ul>{% for name in templates %}
+		<li>
+			{{ name }}
+			<a href="/farwest/templates/{{ name }}" class="edit">Edit</a>
+			<a href="/farwest/templates/{{ name }}" class="delete">Delete</a>
+		</li>
+	{% endfor %}</ul>
+
+	<form id="fw_template_form" action="?new=1" method="put" class="well">
+		<label>Template name</label>
+		<input type="text" name="name" class="span3"/>
+		<span class="help-block">Only lowercase characters, numbers and underscore allowed</span>
+		<label>Template contents</label>
+		<textarea name="contents" class="span5"></textarea>
+		<label>Comments</label>
+		<input type="text" name="comments" class="span5"/>
+		<fieldset>
+			<input type="submit" class="btn"/>
+		</fieldset>
+	</form>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/static/farwest/fw_templates.js"></script>
+{% endblock %}

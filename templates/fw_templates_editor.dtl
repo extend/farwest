@@ -1,0 +1,22 @@
+{% extends "farwest_base.dtl" %}
+
+{% block title %}Farwest: Template editor{% endblock %}
+
+{% block content %}
+	<a href="/farwest/templates">Back to templates list</a>
+
+	<form id="fw_template_form" action="" method="put" class="well">
+		<span class="help-block">Currently editing {{ name }}</span>
+		<label>Template contents</label>
+		<textarea name="contents" class="span5">{{ contents }}</textarea>
+		<label>Comments</label>
+		<input type="text" name="comments" class="span5"/>
+		<fieldset>
+			<input type="submit" class="btn"/>
+		</fieldset>
+	</form>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/static/farwest/fw_templates.js"></script>
+{% endblock %}
