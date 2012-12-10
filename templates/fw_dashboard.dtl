@@ -1,0 +1,11 @@
+{% extends "farwest_base.dtl" %}
+
+{% block title %}Farwest Dashboard{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="span12">
+			<p>Welcome to Farwest!</p>
+		</div>
+	</div>
+{% endblock %}

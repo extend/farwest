@@ -1,0 +1,31 @@
+{% extends "farwest_base.dtl" %}
+
+{% block title %}Farwest Routes{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="span8">
+			<h3>Update routes</h3>
+
+			<form id="fw_routes_form" action="" method="put" class="well">
+				<span class="help-block">Routes are not versioned, only the last version is kept</span>
+				<label>Contents</label>
+				<textarea name="contents" class="span7" rows="10">{{ contents }}</textarea>
+				<span class="help-block">Read the <a href="todo">routing documentation</a></span>
+				<fieldset "pull-right">
+					<input type="submit" class="btn"/>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="span4">
+			<p>If you are not sure about adding new routes, please consult your system administrator.</p>
+			<p>Farwest will ensure that the routes are syntactically correct, but will not validate the options.</p>
+			<p>You have been warned.</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/static/farwest/fw_routes.js"></script>
+{% endblock %}

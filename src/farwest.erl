@@ -26,5 +26,6 @@ start() ->
 	ok = application:start(syntax_tools),
 	ok = application:start(lager),
 	ok = application:start(gproc),
+	ok = application:start(ranch),
 	ok = application:start(cowboy),
 	ok = application:start(farwest).

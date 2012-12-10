@@ -30,5 +30,15 @@ start_link() ->
 %% supervisor.
 
 init([]) ->
-	Procs = [],
+	Procs = [
+		{fw_templates_server,
+			{fw_templates_server, start_link, []},
+			permanent, 5000, worker, [fw_templates_server]},
+		{fw_userdata_server,
+			{fw_userdata_server, start_link, []},
+			permanent, 5000, worker, [fw_userdata_server]},
+		{fw_userfiles_server,
+			{fw_userfiles_server, start_link, []},
+			permanent, 5000, worker, [fw_userfiles_server]}
+	],
 	{ok, {{one_for_one, 10, 10}, Procs}}.

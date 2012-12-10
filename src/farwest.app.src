@@ -19,7 +19,18 @@
 	{registered, [farwest_sup]},
 	{applications, [
 		kernel,
-		stdlib
+		stdlib,
+		crypto,
+		public_key,
+		ssl,
+		ranch,
+		cowboy,
+		lager,
+		riakc,
+		jsx,
+		erlydtl,
+		mimetypes,
+		dh_date
 	]},
 	{mod, {farwest_app, []}},
 	{env, []}

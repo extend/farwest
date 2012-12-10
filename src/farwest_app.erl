@@ -22,22 +22,46 @@
 
 %% API.
 
-%% The priv_dir environment setting is mandatory.
 start(_, _) ->
-	PrivDir = case application:get_env(farwest, priv_dir) of
-		{ok, PD} -> PD
-	end,
-	{ok, Dispatch} = file:consult(PrivDir ++ "/dispatch.conf"),
-	Port = case application:get_env(farwest, port) of
-		{ok, P} -> P;
-		undefined -> 8080
-	end,
-	{ok, _} = cowboy:start_listener(farwest, 100,
-		cowboy_tcp_transport, [{port, Port}],
-		cowboy_http_protocol, [{dispatch, Dispatch}]
+	Port = int_env(http_port, 8080),
+	SSLPort = int_env(https_port, 8443),
+	Certfile = path_env(https_cert),
+	CACertfile = path_env(https_cacert),
+	RoutesFile = path_env(routes_file),
+	ok = application:set_env(farwest, routes_file_path, RoutesFile),
+	{ok, Routes} = file:consult(RoutesFile),
+	Dispatch = cowboy_router:compile(Routes),
+	%% HTTP.
+	{ok, _} = cowboy:start_http(farwest_http, 100,
+		[{port, Port}],
+		[{env, [{dispatch, Dispatch}]}, {onresponse, fun fw_hooks:onresponse/4}]
 	),
 	lager:info("Farwest listening on port ~p~n", [Port]),
+	{ok, _} = cowboy:start_https(farwest_https, 100,
+		[{port, SSLPort}, {certfile, Certfile},
+			{cacertfile, CACertfile}, {verify, verify_peer}],
+		[{env, [{dispatch, Dispatch}]}, {onresponse, fun fw_hooks:onresponse/4}]
+	),
+	lager:info("Farwest securely listening on port ~p~n", [SSLPort]),
 	farwest_sup:start_link().
 
 stop(_) ->
 	ok.
+
+%% Internal.
+
+int_env(Key, Default) ->
+	case application:get_env(farwest, Key) of
+		{ok, Value} when is_integer(Value) ->
+			Value;
+		undefined ->
+			Default
+	end.
+
+path_env(Key) ->
+	case application:get_env(farwest, Key) of
+		{ok, {priv_dir, App, Path}} ->
+			code:priv_dir(App) ++ "/" ++ Path;
+		{ok, Path} ->
+			Path
+	end.

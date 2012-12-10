@@ -1,0 +1,64 @@
+{% extends "farwest_base.dtl" %}
+
+{% block title %}Farwest Userdata{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="span8">
+			{% if bucket_keys %}
+				<h3>Browse the {{ bucket_name }} bucket</h3>
+
+				<div class="navbar">
+					<div class="navbar-inner">
+						<div class="navbar-search">
+							<input type="text" id="filter-data" class="search-query" placeholder="Filter" autofocus/>
+						</div>
+					</div>
+				</div>
+
+				<ul id="data" class="nav nav-list">
+					{% for name in bucket_keys %}
+						<li>
+							<a href="/farwest/userdata/{{ bucket_name }}/{{ name }}">{{ name }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<h3 class="new">Create new userdata</h3>
+
+				<form id="fw_userdata_form" action="?new=1" method="put" class="well">
+					<label>Bucket</label>
+					<input type="text" name="bucket" class="span3"/>
+					<span class="help-block">Only lowercase characters, numbers and underscore allowed</span>
+					<span class="help-block">Must begin with "fw_userdata_"</span>
+					<label>Key</label>
+					<input type="text" name="key" class="span3"/>
+					<span class="help-block">Only lowercase characters, numbers and underscore allowed</span>
+					<label>User data</label>
+					<textarea name="userdata" class="span7" rows="10"></textarea>
+					<label>Comments</label>
+					<input type="text" name="comments" class="span7"/>
+					<fieldset>
+						<input type="submit" class="btn"/>
+					</fieldset>
+				</form>
+			{% endif %}
+		</div>
+
+		<div class="span4">
+			<p><a href="/farwest/userdata" class="btn">Create new userdata</a></p>
+			<p>Or browse existing buckets.</p>
+			<ul class="nav nav-list">
+				{% for name in buckets %}
+					<li>
+						<a href="/farwest/userdata/{{ name }}">{{ name }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/static/farwest/fw_userdata.js"></script>
+{% endblock %}
