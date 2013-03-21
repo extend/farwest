@@ -13,8 +13,8 @@
 %% OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 {application, farwest, [
-	{description, "REST-based web development environment."},
-	{vsn, "0.1.0"},
+	{description, "Modern web application development platform."},
+	{vsn, "0.2.0"},
 	{modules, []},
 	{registered, [farwest_sup]},
 	{applications, [

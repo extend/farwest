@@ -19,6 +19,11 @@ Getting Started
 
  *  Look at the examples in the `examples/` directory
 
+Help the project
+----------------
+
+ *  [Back the project on BountySource.com](https://www.bountysource.com/#fundraisers/83-farwest)
+
 Support
 -------
 
