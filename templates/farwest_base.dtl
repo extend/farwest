@@ -22,10 +22,9 @@ body {
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#">Farwest UI</a>
+				<a class="brand" href="/farwest/">Farwest UI</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a href="/farwest/">Home</a></li>
 						<li><a href="/farwest/routes">Routes</a></li>
 						<li><a href="/farwest/templates">Templates</a></li>
 						<li><a href="/farwest/userdata">User data</a></li>
