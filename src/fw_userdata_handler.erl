@@ -144,7 +144,7 @@ userdata_to_json(Req, State) ->
 userdata_from_form(Req, State=#state{userid=UserID}) ->
 	{Bucket, Req2} = cowboy_req:binding(bucket, Req),
 	{Key, Req3} = cowboy_req:path_info(Req2),
-	{ok, Values, Req4} = cowboy_req:body_qs(Req3),
+	{ok, Values, Req4} = cowboy_req:body_qs(infinity, Req3),
 	{<<"userdata">>, UserData} = lists:keyfind(<<"userdata">>, 1, Values),
 	{<<"comments">>, Comments} = lists:keyfind(<<"comments">>, 1, Values),
 	case fw_userdata_server:set_data(Bucket, Key,

@@ -86,7 +86,7 @@ routes_from_json(Req, State) ->
 
 %% @todo Later just send JSON from form directly.
 routes_from_form(Req, State) ->
-	{ok, Values, Req2} = cowboy_req:body_qs(Req),
+	{ok, Values, Req2} = cowboy_req:body_qs(infinity, Req),
 	{<<"contents">>, Contents} = lists:keyfind(<<"contents">>, 1, Values),
 	case try_compile(Contents) of
 		{ok, Dispatch} ->

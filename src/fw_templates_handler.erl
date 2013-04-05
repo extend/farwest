@@ -146,7 +146,7 @@ template_from_json(Req, State) ->
 %% @todo Later just send JSON from form directly.
 template_from_form(Req, State=#state{userid=UserID}) ->
 	{Name, Req2} = cowboy_req:binding(name, Req),
-	{ok, Values, Req3} = cowboy_req:body_qs(Req2),
+	{ok, Values, Req3} = cowboy_req:body_qs(infinity, Req2),
 	{<<"contents">>, Contents} = lists:keyfind(<<"contents">>, 1, Values),
 	{<<"comments">>, Comments} = lists:keyfind(<<"comments">>, 1, Values),
 	case fw_templates_server:set_template(
