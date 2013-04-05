@@ -160,13 +160,17 @@ walk_array([{Key, Value}|Tail], Links, Acc) ->
 					walk_array(Tail, Links, [{Key, Value}|Acc]);
 				{_, Bucket, ValuePrefix} ->
 					PrefixSize = byte_size(ValuePrefix),
-					<< ValuePrefix:PrefixSize/binary, Suffix/bits >> = Value,
-					case fw_userdata_server:get_value(Bucket, Suffix) of
-						{ok, JSON} ->
-							DataKey = << KeyPrefix/binary, "_data" >>,
-							walk_array(Tail, Links, [
-								{DataKey, jsx:decode(JSON)},
-								{Key, Value}|Acc]);
+					case Value of
+						<< ValuePrefix:PrefixSize/binary, Suffix/bits >> ->
+							case fw_userdata_server:get_value(Bucket, Suffix) of
+								{ok, JSON} ->
+									DataKey = << KeyPrefix/binary, "_data" >>,
+									walk_array(Tail, Links, [
+										{DataKey, jsx:decode(JSON)},
+										{Key, Value}|Acc]);
+								_ ->
+									walk_array(Tail, Links, [{Key, Value}|Acc])
+							end;
 						_ ->
 							walk_array(Tail, Links, [{Key, Value}|Acc])
 					end
