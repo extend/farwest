@@ -6,23 +6,43 @@ Farwest is a modern web application development platform.
 Goals
 -----
 
-Farwest aims to allow people who don't know Erlang to create prototypes
-of Erlang web applications. It also aims to allow people with no
-programming background to perform many operations on the system
-without any programmer guidance needed.
+Farwest allows people with no Erlang knowledge to painlessly
+build frontends to Erlang applications.
 
-Farwest is still an experimental project. Documentation availability
-or quality may vary.
+Farwest also provides UI components for allowing subsequent
+users to perform various tasks without the help of a programmer.
 
-Getting Started
----------------
+Usage
+-----
 
- *  Look at the examples in the `examples/` directory
+The Farwest project is an empty template you can use to build
+applications. By default it provides you with nothing but an
+administration UI.
 
-Help the project
-----------------
+To build, you need Erlang R16B+, relx and GNU Make installed.
 
- *  [Back the project on BountySource.com](https://www.bountysource.com/#fundraisers/83-farwest)
+``` bash
+$ make
+```
+
+Farwest temporarily uses Riak for storing content. You need
+to setup a working cluster on your local environment by following
+the steps found in the documentation for Farwest to work:
+
+ *  http://docs.basho.com/riak/latest/quickstart/
+
+The Farwest server can then be started.
+
+``` bash
+$ ./rel/farwest/bin/farwest console
+```
+
+You can now access the administration UI at the following URL:
+
+ *  http://localhost:8080/farwest
+
+Farwest is still very unstable, features may or may not work
+at this point in time.
 
 Support
 -------

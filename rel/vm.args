@@ -1,0 +1,12 @@
+## Name of the node
+-name farwest@127.0.0.1
+
+## Cookie for distributed erlang
+-setcookie farwest
+
+## Heartbeat management; auto-restarts VM if it dies or becomes unresponsive
+-heart
+
+## Enable kernel poll and disable async threads
++K true
++A 0

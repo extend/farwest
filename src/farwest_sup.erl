@@ -1,4 +1,4 @@
-%% Copyright (c) 2012, Loïc Hoguin <essen@ninenines.eu>
+%% Copyright (c) 2012-2013, Loïc Hoguin <essen@ninenines.eu>
 %%
 %% Permission to use, copy, modify, and/or distribute this software for any
 %% purpose with or without fee is hereby granted, provided that the above
@@ -30,15 +30,5 @@ start_link() ->
 %% supervisor.
 
 init([]) ->
-	Procs = [
-		{fw_templates_server,
-			{fw_templates_server, start_link, []},
-			permanent, 5000, worker, [fw_templates_server]},
-		{fw_userdata_server,
-			{fw_userdata_server, start_link, []},
-			permanent, 5000, worker, [fw_userdata_server]},
-		{fw_userfiles_server,
-			{fw_userfiles_server, start_link, []},
-			permanent, 5000, worker, [fw_userfiles_server]}
-	],
+	Procs = [],
 	{ok, {{one_for_one, 10, 10}, Procs}}.
