@@ -5,8 +5,8 @@ PROJECT = farwest
 # Dependencies.
 
 DEPS = farwest_core farwest_ui
-dep_farwest_core = https://github.com/extend/farwest_core 0.3.0
-dep_farwest_ui = https://github.com/extend/farwest_ui 0.3.0
+dep_farwest_core = pkg://farwest_core 0.3.0
+dep_farwest_ui = pkg://farwest_ui 0.3.0
 
 # Release.
 
