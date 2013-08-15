@@ -10,6 +10,8 @@ dep_farwest_ui = pkg://farwest_ui 0.3.0
 
 # Release.
 
+.PHONY: release clean-release
+
 release: clean-release deps app
 	# Workaround for mimetypes for now
 	cd deps/mimetypes && ./../lager/rebar clean compile
